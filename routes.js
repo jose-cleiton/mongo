@@ -7,7 +7,9 @@ class Routes {
   }
 
   routes() {
-    // adicione suas rotas aqui
+    this.router.get('/health', (req, res) => {
+      return res.status(200).json({ message: 'Server is on' });
+    });
   }
 }
 
