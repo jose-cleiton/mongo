@@ -18,7 +18,8 @@ class ProductController {
 
   show = async (req, res) => {
 
-    const {id}= req.params
+    try {
+      const {id}= req.params
     const product = await this.Product.model.findById(id);
     if (!product) {
       return res.status(404).json({
@@ -26,10 +27,29 @@ class ProductController {
       });
     }
     return res.status(200).json(product);   
+    } catch (error) {
+      return res.status(404).json({
+        message: 'Verify the product id'
+      });
+    }
    
   }
 
-  update = async (req, res, next) => {
+  update = async (req, res) => {
+
+try {
+  
+  const { id } = req.params
+  await this.Product.model.findByIdAndUpdate(id, req.body)
+  return res.status(200).json({
+    message: 'Product updated successfully'
+  })
+} catch (error) {
+  return res.status(404).json({
+    message: 'Product not found'
+  });
+  
+}
     // ...
   }
 
