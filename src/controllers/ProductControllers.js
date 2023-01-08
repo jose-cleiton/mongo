@@ -1,5 +1,3 @@
-
-
 const Product = require('../models/ProductModel');
 
 class ProductController {
@@ -13,15 +11,22 @@ class ProductController {
   }
 
   index = async (req, res) => {
-    const { productId } = req.params;
-    const product = await this.Product.model.findById(productId);
-    return res.status(200).json(product);
+    const products = await this.Product.model.find({});
+    return res.status(200).json(products);
    
   }
 
-  show = async (req, res, next) => {
-    
-    // ...
+  show = async (req, res) => {
+
+    const {id}= req.params
+    const product = await this.Product.model.findById(id);
+    if (!product) {
+      return res.status(404).json({
+        message: 'Product not found'
+      });
+    }
+    return res.status(200).json(product);   
+   
   }
 
   update = async (req, res, next) => {

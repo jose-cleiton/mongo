@@ -15,6 +15,9 @@ class Routes {
     });
 
     this.router.post('/products', this.ProductController.store);
+
+    this.router.get('/products', this.ProductController.index);
+    this.router.get('/products/:id', this.ProductController.show);
   }
 }
 
