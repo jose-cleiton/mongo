@@ -2,7 +2,7 @@ const ProductModel = require('../models/ProductModel')
 
 
 class ProductController {
-  store = async () => {
+  store = async (req, res) => {
     
   }
 
@@ -19,3 +19,5 @@ class ProductController {
   }
 
 }
+
+module.exports = ProductController

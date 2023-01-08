@@ -1,8 +1,11 @@
 const { Router } = require('express');
 
+const ProductController = require('./controllers/ProductControllers');
+
 class Routes {
-  constructor() {
+  constructor(ProductController) {
     this.router = Router();
+    this.ProductController = ProductController;
     this.routes();
   }
 
@@ -10,7 +13,9 @@ class Routes {
     this.router.get('/health', (req, res) => {
       return res.status(200).json({ message: 'Server is on' });
     });
+
+    this.router.post('/products', this.ProductController.store);
   }
 }
 
-module.exports = new Routes().router;
+module.exports = new Routes(new ProductController()).router;
