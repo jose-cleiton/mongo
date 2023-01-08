@@ -1,18 +1,20 @@
-const ProductModel = require('../models/ProductModel');
+
+
+const Product = require('../models/ProductModel');
 
 class ProductController {
-  constructor(ProductModel) {
-    this.ProductModel = ProductModel;
+  constructor(Product) {
+    this.Product = Product;
   }
 
   store = async (req, res) => {
-    const createdProduct = await ProductModel.create(req.body);
+    const createdProduct = await this.Product.model.create(req.body);
     return res.status(200).json(createdProduct);
   }
 
   index = async (req, res) => {
     const { productId } = req.params;
-    const product = await this.ProductModel.findById(productId);
+    const product = await this.Product.model.findById(productId);
     return res.status(200).json(product);
    
   }
@@ -31,4 +33,4 @@ class ProductController {
   }
 }
 
-module.exports = new ProductController(new ProductModel());
+module.exports = new ProductController(Product);

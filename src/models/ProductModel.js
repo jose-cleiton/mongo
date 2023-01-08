@@ -1,19 +1,16 @@
-const mongoose = require('mongoose')
+class Product {
+  constructor() { 
+    this.mongoose = require('mongoose');
+    this.Schema = this.mongoose.Schema;
+    this.ObjectId = this.Schema.ObjectId;
+    this.ProductSchema = new this.Schema({
+      id: this.ObjectId,
+      title: String,
+      description: String,
+      price: Number
+    });
+    this.model = this.mongoose.model('product', this.ProductSchema);
+  }
+}
 
-const Schema = mongoose.Schema
-
-const ObjectId = Schema.ObjectId
-
-const ProductSchema = new Schema({
-  id: ObjectId,
-  title: String,
-  description: String,
-  price: Number
-})
-
-const ProductModel = mongoose.model('product', ProductSchema)
-
-module.exports = ProductModel
-  
-
-
+module.exports = new Product();
