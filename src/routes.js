@@ -18,4 +18,4 @@ class Routes {
   }
 }
 
-module.exports = new Routes(new ProductController()).router;
+module.exports = new Routes(ProductController).router;
