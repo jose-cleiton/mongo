@@ -19,6 +19,7 @@ class Routes {
     this.router.get('/products', this.ProductController.index);
     this.router.get('/products/:id', this.ProductController.show);
     this.router.put('/products/:id', this.ProductController.update);
+    this.router.delete('/products/:id', this.ProductController.remove);
   }
 }
 

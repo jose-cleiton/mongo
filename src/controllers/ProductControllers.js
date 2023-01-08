@@ -53,8 +53,20 @@ try {
     // ...
   }
 
-  destroy = async (req, res, next) => {
-    // ...
+  remove = async (req, res) => {
+    try {
+      const { id } = req.params;
+      await this.Product.model.findByIdAndRemove(id);
+      return res.status(200).json({
+        message: 'Product deleted successfully'
+      })
+      // ...
+    }
+    catch (error) { 
+      return res.status(404).json({
+        message: 'Product not found'
+      });
+    }
   }
 }
 
