@@ -17,4 +17,4 @@ class App {
   }
 }
 
-module.exports = new App(require('./routes')).express;
+module.exports = new App(require('./src/routes')).express;
